@@ -1,15 +1,18 @@
+# from allFrames.loginFrame import LoginFrame
 import tkinter as tk
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-class forgotPass:
-    def __init__(self, rootName):
+class ForgotPassFrame(tk.Frame):
+    def __init__(self, parent, controller):
+        from allFrames.loginFrame import LoginFrame
+        tk.Frame.__init__(self,parent)
         self.entryFont = ("Rockwell", 8)
         self.labelFont = ("Rockwell", 8)
-        self.root = rootName
+        # self.root = rootName
 
-        self.forgotPassFrame = tk.LabelFrame(self.root, text="Forgot Password", bd=5)
+        self.forgotPassFrame = tk.LabelFrame(self, text="Forgot Password", bd=5)
         self.forgotPassFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
 
         self.emailentry = tk.Entry(self.forgotPassFrame, width = 20, font = self.entryFont)
@@ -19,12 +22,16 @@ class forgotPass:
         self.sendOtpButton = tk.Button(self.forgotPassFrame, text = "Send OTP", command = self.sendOtp, font = self.labelFont)
         self.sendOtpButton.place(relx=0.35, rely=0.52, relwidth=0.3, relheight=0.1)
 
+        self.backButton = tk.Button(self.forgotPassFrame, text = "Back", command = lambda: controller.show_frame(LoginFrame), font = self.labelFont)
+        self.backButton.place(relx=0.35, rely=0.72, relwidth=0.3, relheight=0.1)
+
     def sendOtp(self):
-        if self.emailentry.get() != "manishjalui11@gmail.com":
+        if self.emailentry.get() != "email":
             errorLabel = tk.Label(self.forgotPassFrame, text = "Email id that you have entered in not found in our system", bg = 'Grey', font = self.labelFont)
             errorLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
             errorLabel.after(2000, errorLabel.destroy)
             return
+        print("mail")
         self.sendMail(self.emailentry.get())
         confirmLabel = tk.Label(self.forgotPassFrame, text = "Mail Send succesfully", bg = 'Grey', font = self.labelFont)
         confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)

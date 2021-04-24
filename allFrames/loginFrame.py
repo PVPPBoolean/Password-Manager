@@ -1,15 +1,16 @@
-from allFrames.forgotPassFrame import forgotPass
+from allFrames.forgotPassFrame import ForgotPassFrame
 import tkinter as tk
 
 
-class loginFrame():
-	def __init__(self, rootName):
+class LoginFrame(tk.Frame):
+	def __init__(self, parent, controller):
+		tk.Frame.__init__(self,parent)
 		# super().__init__(self, root)
 		self.labelFont = ("Rockwell", 12, "bold")
 		self.entryFont = ("Rockwell", 16)
-		self.root = rootName
-
-		self.loginFrame = tk.LabelFrame(self.root, text="Home", bd=5)
+		# self.root = rootName
+		# self.config(text="Login")
+		self.loginFrame = tk.LabelFrame(self, text="Login", bd=5)
 		self.loginFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
 
 		self.mpassentry = tk.Entry(self.loginFrame, show = "*", width = 20, font = self.entryFont)
@@ -18,7 +19,7 @@ class loginFrame():
 		self.mpassenter = tk.Button(self.loginFrame, text = "Enter", command = self.checkPass, font = self.labelFont)
 		self.mpassenter.place(relx=0.35, rely=0.52, relwidth=0.3, relheight=0.1)
 
-		self.forgotPass = tk.Button(self.loginFrame, text = "Forgot Password", command = self.forgot)
+		self.forgotPass = tk.Button(self.loginFrame, text = "Forgot Password", command = lambda: controller.show_frame(ForgotPassFrame))
 		self.forgotPass.place(relx=0.35, rely=0.7, relwidth=0.35, relheight=0.08)
 
 		self.mpassentry.bind("<Return>", self.shortcuts)
@@ -44,5 +45,5 @@ class loginFrame():
 		errorLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 		errorLabel.after(2000, errorLabel.destroy)
 
-	def forgot(self):
-		print("Forgot Password")
+	# def forgot(self):
+	# 	print("Forgot Password")
