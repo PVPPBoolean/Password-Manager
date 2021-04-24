@@ -1,29 +1,38 @@
-from allFrames.forgotPassFrame import ForgotPassFrame
 import tkinter as tk
+from allFrames.forgotPassFrame import ForgotPassFrame
 from allFrames.loginFrame import LoginFrame
+from allFrames.setupFrame import SetupFrame
+from pwmdatabase import PwmDatabase
 
+database = PwmDatabase()
+database.createTable()
 
 class PasswordManagerApp(tk.Tk):
-    def __init__(self, *args , **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-        # self.root = tk.Tk()
-        # self.root.geometry("350x400+600+150")
-        # self.root.title("Password Manager")
-        # container = tk.Frame(self.root)
-        container = tk.Frame(self)
-        # container.place(relx=0, rely=0, relheight=1,relwidth=1)
-        container.pack(side="top", fill="both", expand=True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
+	def __init__(self, *args , **kwargs):
+		tk.Tk.__init__(self, *args, **kwargs)
+		tk.Tk.geometry(self, '350x400+600+150')
+		tk.Tk.title(self, 'Password Manager')
 
-        self.frames = {}
+		container = tk.Frame(self)
+		container.pack(side="top", fill="both", expand=True)
+		container.grid_rowconfigure(0, weight=1)
+		container.grid_columnconfigure(0, weight=1)
 
-        for F in (LoginFrame, ForgotPassFrame):
-            frame = F(container, self)
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
-        self.show_frame(LoginFrame)
+		self.frames = {}
 
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
+		for F in (LoginFrame, ForgotPassFrame, SetupFrame):
+			frame = F(container, self)
+			self.frames[F] = frame
+			frame.grid(row=0, column=0, sticky="nsew")
+
+		if(database.isEmpty()):
+			self.show_frame(SetupFrame)
+		elif(not database.isEmpty()):
+			self.show_frame(LoginFrame)
+
+	def show_frame(self, cont):
+		frame = self.frames[cont]
+		frame.tkraise()
+
+	def test(self):
+		self.destroy()
