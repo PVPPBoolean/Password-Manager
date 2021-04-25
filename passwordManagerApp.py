@@ -2,6 +2,7 @@ import tkinter as tk
 from allFrames.forgotPassFrame import ForgotPassFrame
 from allFrames.loginFrame import LoginFrame
 from allFrames.setupFrame import SetupFrame
+from allFrames.resetPassFrame import ResetPassFrame
 from pwmdatabase import PwmDatabase
 
 database = PwmDatabase()
@@ -20,7 +21,7 @@ class PasswordManagerApp(tk.Tk):
 
 		self.frames = {}
 
-		for F in (LoginFrame, ForgotPassFrame, SetupFrame):
+		for F in (LoginFrame, ForgotPassFrame, SetupFrame, ResetPassFrame):
 			frame = F(container, self)
 			self.frames[F] = frame
 			frame.grid(row=0, column=0, sticky="nsew")

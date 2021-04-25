@@ -1,4 +1,4 @@
-# from allFrames.loginFrame import LoginFrame
+from allFrames.resetPassFrame import ResetPassFrame
 import tkinter as tk
 import smtplib
 from email.mime.text import MIMEText
@@ -24,7 +24,7 @@ class ForgotPassFrame(tk.Frame):
         self.emailentry.bind("<Return>", self.shortcuts)
 
         self.sendOtpButton = tk.Button(
-            self.forgotPassFrame, text="Send OTP", command=self.sendOtp, font=self.labelFont)
+            self.forgotPassFrame, text="Send OTP", command=lambda: [self.sendOtp(), controller.show_frame(ResetPassFrame)], font=self.labelFont)
         self.sendOtpButton.place(relx=0.35, rely=0.52,
                                  relwidth=0.3, relheight=0.1)
 
@@ -45,7 +45,7 @@ class ForgotPassFrame(tk.Frame):
             errorLabel.after(2000, errorLabel.destroy)
             return
         print("mail")
-        self.sendMail(self.emailentry.get())
+        # self.sendMail(self.emailentry.get())
         confirmLabel = tk.Label(
             self.forgotPassFrame, text="Mail Send succesfully", bg='Grey', font=self.labelFont)
         confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
