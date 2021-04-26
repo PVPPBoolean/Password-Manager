@@ -1,11 +1,12 @@
+import sys
 import tkinter as tk
-from allFrames.forgotPassFrame import ForgotPassFrame
-from allFrames.loginFrame import LoginFrame
-from allFrames.setupFrame import SetupFrame
-from allFrames.resetPassFrame import ResetPassFrame
-from pwmdatabase import PwmDatabase
+from forgotPassFrame import ForgotPassFrame
+from loginFrame import LoginFrame
+from setupFrame import SetupFrame
+from resetPassFrame import ResetPassFrame
+from MPdatabase import PMPDatabase
 
-database = PwmDatabase()
+database = PMPDatabase()
 database.createTable()
 
 class PasswordManagerApp(tk.Tk):
@@ -34,6 +35,3 @@ class PasswordManagerApp(tk.Tk):
 	def show_frame(self, cont):
 		frame = self.frames[cont]
 		frame.tkraise()
-
-	def test(self):
-		self.destroy()
