@@ -1,9 +1,10 @@
-import sys
+# import sys
 import tkinter as tk
 from forgotPassFrame import ForgotPassFrame
 from loginFrame import LoginFrame
 from setupFrame import SetupFrame
 from resetPassFrame import ResetPassFrame
+from homeFrame import HomeFrame
 from MPdatabase import PMPDatabase
 
 database = PMPDatabase()
@@ -12,7 +13,7 @@ database.createTable()
 class PasswordManagerApp(tk.Tk):
 	def __init__(self, *args , **kwargs):
 		tk.Tk.__init__(self, *args, **kwargs)
-		tk.Tk.geometry(self, '350x400+600+150')
+		tk.Tk.geometry(self, '550x500+600+150')
 		tk.Tk.title(self, 'Password Manager')
 
 		container = tk.Frame(self)
@@ -22,16 +23,19 @@ class PasswordManagerApp(tk.Tk):
 
 		self.frames = {}
 
-		for F in (LoginFrame, ForgotPassFrame, SetupFrame, ResetPassFrame):
+		for F in (LoginFrame, ForgotPassFrame, SetupFrame, ResetPassFrame, HomeFrame):
 			frame = F(container, self)
 			self.frames[F] = frame
 			frame.grid(row=0, column=0, sticky="nsew")
 
+		# This will raise setupFrame if opened for first time(means user doesn't exist)
+		# And raise loginFrame the rest of the time
 		if(database.isEmpty()):
 			self.show_frame(SetupFrame)
 		elif(not database.isEmpty()):
 			self.show_frame(LoginFrame)
 
+	# Raises Frame in all files
 	def show_frame(self, cont):
 		frame = self.frames[cont]
 		frame.tkraise()
