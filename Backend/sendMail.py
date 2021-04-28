@@ -3,6 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from config import EMAIL_ADDRESS, PASSWORD
 
+
 class SendMail():
 	def __init__(self):
 		self.sender = EMAIL_ADDRESS

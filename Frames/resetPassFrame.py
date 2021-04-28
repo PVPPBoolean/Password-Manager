@@ -1,13 +1,9 @@
 import tkinter as tk
-from MPdatabase import PMPDatabase
-from OTPGenerator import Otp
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+from Database.MPdatabase import PMPDatabase
+
 
 class ResetPassFrame(tk.Frame):
 	def __init__(self, parent, controller):
-		from forgotPassFrame import ForgotPassFrame
 		tk.Frame.__init__(self,parent)
 		self.entryFont = ("Rockwell", 12)
 		self.labelFont = ("Rockwell", 12)
@@ -45,7 +41,7 @@ class ResetPassFrame(tk.Frame):
 	# and insert it into database with insertIntoTable() fom MPDatabase
 	def resetPass(self):
 		try:
-			from loginFrame import LoginFrame
+			from Frames.loginFrame import LoginFrame
 			db = PMPDatabase()
 
 			np = self.npentry.get()

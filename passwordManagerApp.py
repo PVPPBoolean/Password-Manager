@@ -1,11 +1,11 @@
-# import sys
 import tkinter as tk
-from forgotPassFrame import ForgotPassFrame
-from loginFrame import LoginFrame
-from setupFrame import SetupFrame
-from resetPassFrame import ResetPassFrame
-from homeFrame import HomeFrame
-from MPdatabase import PMPDatabase
+from Frames.forgotPassFrame import ForgotPassFrame
+from Frames.loginFrame import LoginFrame
+from Frames.setupFrame import SetupFrame
+from Frames.resetPassFrame import ResetPassFrame
+from Frames.homeFrame import HomeFrame
+from Database.MPdatabase import PMPDatabase
+
 
 database = PMPDatabase()
 database.createTable()

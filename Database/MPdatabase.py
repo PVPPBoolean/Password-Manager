@@ -1,6 +1,7 @@
 import sqlite3
 import hashlib
 
+
 # This class is of MasterTable where app password(hashed) and email is stored in masterTable 
 class PMPDatabase:
 	def __init__(self):
@@ -22,7 +23,7 @@ class PMPDatabase:
 	def insertIntoTable(self, mp, em):
 
 		bytesMP = bytes(mp, 'utf-8')
-		hashedMP = hashlib.sha224(bytesMP).hexdigest()
+		hashedMP = hashlib.sha256(bytesMP).hexdigest()
 
 		qInsert = """
 			INSERT INTO masterTable (masterPass, email)
@@ -36,7 +37,7 @@ class PMPDatabase:
 	def updateIntoTable(self, mp):
 		mail = self.getMail()		
 		bytesMP = bytes(mp, 'utf-8')
-		hashedMP = hashlib.sha224(bytesMP).hexdigest()
+		hashedMP = hashlib.sha256(bytesMP).hexdigest()
 
 		qUpdate = """
 			UPDATE masterTable SET masterPass = ? WHERE email = ?
@@ -62,7 +63,7 @@ class PMPDatabase:
 	# This is used in loginFrame.py to check the password with database
 	def loginCheck(self, mp):
 		bytesMP = bytes(mp, 'utf-8')
-		hashedMP = hashlib.sha224(bytesMP).hexdigest()
+		hashedMP = hashlib.sha256(bytesMP).hexdigest()
 
 		qSelect = """
 			SELECT * FROM masterTable

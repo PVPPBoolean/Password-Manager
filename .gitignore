@@ -1,3 +1,5 @@
 __pycache__/
-allFrames/__pycache__/
+Frames/__pycache__/
+Database/__pycache__/
+Backend/__pycache__/
 config.py

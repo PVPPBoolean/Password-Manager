@@ -1,6 +1,7 @@
 import tkinter as tk
-from forgotPassFrame import ForgotPassFrame
-from MPdatabase import PMPDatabase
+from Frames.forgotPassFrame import ForgotPassFrame
+from Database.MPdatabase import PMPDatabase
+
 
 class LoginFrame(tk.Frame):
 	def __init__(self, parent, controller):
@@ -40,7 +41,7 @@ class LoginFrame(tk.Frame):
 			confirmLabel = tk.Label(self.loginFrame, text = "Login Successful", bg = 'Grey', font = self.labelFont)
 			confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			confirmLabel.after(2000, confirmLabel.destroy)
-			from homeFrame import HomeFrame
+			from Frames.homeFrame import HomeFrame
 			self.controller.show_frame(HomeFrame)
 			return
 		errorLabel = tk.Label(self.loginFrame, text = "Wrong Password... try again", bg = 'Grey', font = self.labelFont)

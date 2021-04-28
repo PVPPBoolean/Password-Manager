@@ -1,7 +1,8 @@
 import tkinter as tk
-from MPdatabase import PMPDatabase
-from OTPGenerator import Otp
-from sendMail import SendMail
+from Database.MPdatabase import PMPDatabase
+from Backend.OTPGenerator import Otp
+from Backend.sendMail import SendMail
+
 
 class SetupFrame(tk.Frame):
 	def __init__(self, parent, controller):
@@ -52,7 +53,7 @@ class SetupFrame(tk.Frame):
 
 	# Will check the entered OTP with otpStatus from checkOTP()
 	def insertPass(self, otpStatus):
-			from loginFrame import LoginFrame
+			from Frames.loginFrame import LoginFrame
 			try:
 				db = PMPDatabase()
 				em = self.emailentry.get()

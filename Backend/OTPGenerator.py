@@ -1,5 +1,6 @@
 import random
 
+
 class Otp:
 	def __init__(self):
 		self.characters = "abcdefghijklmnopqrstuvwxyz0123456789"

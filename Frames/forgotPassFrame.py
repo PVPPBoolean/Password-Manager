@@ -1,12 +1,14 @@
-from resetPassFrame import ResetPassFrame
+from Frames.resetPassFrame import ResetPassFrame
 import tkinter as tk
-from MPdatabase import PMPDatabase
-from OTPGenerator import Otp
-from sendMail import SendMail
+from Database.MPdatabase import PMPDatabase
+from Backend.OTPGenerator import Otp
+from Backend.sendMail import SendMail
+
 
 class ForgotPassFrame(tk.Frame):
 	def __init__(self, parent, controller):
-		from loginFrame import LoginFrame
+		# from loginFrame import LoginFrame
+		from Frames.loginFrame import LoginFrame
 		tk.Frame.__init__(self, parent)
 		self.entryFont = ("Rockwell", 12)
 		self.labelFont = ("Rockwell", 12)
@@ -54,6 +56,10 @@ class ForgotPassFrame(tk.Frame):
 			self.controller.show_frame(ResetPassFrame)
 		else:
 			print("OTP Incorrect")
+			errorLabel = tk.Label(self.forgotPassFrame, text="OTP incorrect", bg='Grey', font=self.labelFont)
+			errorLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
+			errorLabel.after(2000, errorLabel.destroy)
+
 
 	# Will check the email with database(since changing email is not allowed) and send OTP to the entered email 
 	def sendOtp(self):
