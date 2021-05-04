@@ -3,6 +3,8 @@ from Frames.forgotPassFrame import ForgotPassFrame
 from Frames.loginFrame import LoginFrame
 from Frames.setupFrame import SetupFrame
 from Frames.resetPassFrame import ResetPassFrame
+from Frames.searchPassFrame import SearchPassFrame
+from Frames.addPassFrame import AddPassFrame
 from Frames.homeFrame import HomeFrame
 from Database.MPdatabase import PMPDatabase
 
@@ -23,7 +25,7 @@ class PasswordManagerApp(tk.Tk):
 
 		self.frames = {}
 
-		for F in (LoginFrame, ForgotPassFrame, SetupFrame, ResetPassFrame, HomeFrame):
+		for F in (LoginFrame, ForgotPassFrame, SetupFrame, ResetPassFrame, HomeFrame, SearchPassFrame, AddPassFrame):
 			frame = F(container, self)
 			self.frames[F] = frame
 			frame.grid(row=0, column=0, sticky="nsew")
