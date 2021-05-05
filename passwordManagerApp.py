@@ -7,10 +7,14 @@ from Frames.searchPassFrame import SearchPassFrame
 from Frames.addPassFrame import AddPassFrame
 from Frames.homeFrame import HomeFrame
 from Database.MPdatabase import PMPDatabase
+from Database.PDatabase import siteData
 
 
 database = PMPDatabase()
 database.createTable()
+
+Pdb = siteData()
+Pdb.createDataTable()
 
 class PasswordManagerApp(tk.Tk):
 	def __init__(self, *args , **kwargs):
