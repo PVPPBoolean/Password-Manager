@@ -52,13 +52,13 @@ class ResetPassFrame(tk.Frame):
 				confirmInsertLabel = tk.Label(self.resetPassFrame, text = "Successful", bg = 'Grey', font = self.labelFont)
 				confirmInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 				confirmInsertLabel.after(2000, confirmInsertLabel.destroy)
-				print("Password Changed Successfully")
+				# print("Password Changed Successfully")
 				self.controller.show_frame(LoginFrame)
 			else:
 				perrorInsertLabel = tk.Label(self.resetPassFrame, text = "Password doesn't match with each other", bg = 'Grey', font = self.labelFont)
 				perrorInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 				perrorInsertLabel.after(2000, perrorInsertLabel.destroy)
-				print("Password doesn't match with each other")
+				# print("Password doesn't match with each other")
 		except Exception as e:
 			errorInsertLabel = tk.Label(self.resetPassFrame, text = "Try again", bg = 'Grey', font = self.labelFont)
 			errorInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)

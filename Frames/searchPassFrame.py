@@ -25,39 +25,50 @@ class SearchPassFrame(tk.Frame):
 		self.searchBtn = tk.Button(self.searchPassFrame, text='Q', command=self.searchPass)
 		self.searchBtn.place(relx=0.85, rely=0.1375, relheight=0.075, relwidth=0.075)
 
-		self.siteLabel = tk.Label(self.searchPassFrame, text='site name')
+		self.siteLabel = tk.Label(self.searchPassFrame, text='Site name')
 		self.siteLabel.place(relx=0.05, rely=0.25, relheight=0.05, relwidth=0.425)
 
-		self.usernameLabel = tk.Label(self.searchPassFrame, text='username')
+		self.usernameLabel = tk.Label(self.searchPassFrame, text='Username')
 		self.usernameLabel.place(relx=0.525, rely=0.25, relheight=0.05, relwidth=0.425)
 		
-		self.passLabel = tk.Label(self.searchPassFrame, text='password')
+		self.passLabel = tk.Label(self.searchPassFrame, text='Password')
 		self.passLabel.place(relx=0.05, rely=0.35, relheight=0.05, relwidth=0.425)
 
 		self.copyBtn = tk.Button(self.searchPassFrame, text = "Copy to Clipboard", command=self.copy)
 		self.copyBtn.place(relx=0.525, rely=0.35, relheight=0.05, relwidth=0.425)
+		
+		self.deleteBtn = tk.Button(self.searchPassFrame, text = "Delete", command=self.deletePass, font = self.labelFont)
+		self.deleteBtn.place(relx=0.525, rely=0.55, relwidth=0.3, relheight=0.1)
 
 		self.homeBtn = tk.Button(self.searchPassFrame, text = "Home", command=lambda:[controller.show_frame(HomeFrame)], font = self.labelFont)
 		self.homeBtn.place(relx=0.35, rely=0.85, relwidth=0.3, relheight=0.1)
 
 
 	def searchPass(self):
-		print("searched")
+		# print("searched")
 		returnedData = self.Pobj.searchPass(self.siteText.get())
 		if returnedData != "": 
 			self.siteLabel.config(text = "Site: "+returnedData[0])
 			self.usernameLabel.config(text = "Username: "+returnedData[1])
 			self.passLabel.config(text = "Password: "+returnedData[2])
 		else:
-			confirmLabel = tk.Label(self.searchPassFrame, text = "First Search!!!!!!", bg = 'Grey', font = self.labelFont)
-			confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
-			confirmLabel.after(2000, confirmLabel.destroy)
+			invalidLabel = tk.Label(self.searchPassFrame, text = "Invalid Site Name ", bg = 'Grey', font = self.labelFont)
+			invalidLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
+			invalidLabel.after(2000, invalidLabel.destroy)
 
 	def copy(self):
-		print("password copied")
+		# print("password copied")
 		p = (self.passLabel['text']).split(" ")
 		
 		self.Gobj.c2c(p[1])
 		self.usernameLabel.config(text = "Username")
 		self.siteText.config(text = "Site")
 		self.passLabel.config(text = "Password")
+
+	def deletePass(self):
+		dataToDelete = (self.passLabel['text']).split(" ")
+		# print(dataToDelete[1])
+		self.Pobj.deleteDataTable(dataToDelete[1])
+		deleteLabel = tk.Label(self.searchPassFrame, text = "Site details deleted ", bg = 'Grey', font = self.labelFont)
+		deleteLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
+		deleteLabel.after(2000, deleteLabel.destroy)

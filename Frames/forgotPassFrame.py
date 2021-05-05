@@ -52,10 +52,10 @@ class ForgotPassFrame(tk.Frame):
 	def checkOTP(self):
 		enteredOTP = self.otpentry.get()
 		if (enteredOTP == self.generatedOTP):
-			print("OTP Correct")
+			# print("OTP Correct")
 			self.controller.show_frame(ResetPassFrame)
 		else:
-			print("OTP Incorrect")
+			# print("OTP Incorrect")
 			errorLabel = tk.Label(self.forgotPassFrame, text="OTP incorrect", bg='Grey', font=self.labelFont)
 			errorLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			errorLabel.after(2000, errorLabel.destroy)
@@ -64,7 +64,7 @@ class ForgotPassFrame(tk.Frame):
 	# Will check the email with database(since changing email is not allowed) and send OTP to the entered email 
 	def sendOtp(self):
 		mail = self.emailentry.get()
-		print(self.emailentry.get())
+		# print(self.emailentry.get())
 		pdb = PMPDatabase()
 		if (not (pdb.mailCheck(mail))):
 			errorLabel = tk.Label(self.forgotPassFrame, text="Wrong Email entered",	bg='Grey', font=self.labelFont)
@@ -81,13 +81,13 @@ class ForgotPassFrame(tk.Frame):
 		confirmLabel = tk.Label(self.forgotPassFrame, text="Email Sent",	bg='Grey', font=self.labelFont)
 		confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 		confirmLabel.after(2000, confirmLabel.destroy())
-		print("OTP send")
+		# print("OTP send")
 
 	# Shortcut for Enter key 
 	def shortcuts(self, event):
 		key = event.char
 		if key == '\r':
-			print("Enter pressed")
+			# print("Enter pressed")
 			self.sendOtp()
 
 	# Will send mail

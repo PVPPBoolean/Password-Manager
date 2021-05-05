@@ -59,14 +59,14 @@ class SetupFrame(tk.Frame):
 				em = self.emailentry.get()
 				mp = self.passentry.get()
 				if(otpStatus == True):
-					print("otp is true")
+					# print("otp is true")
 					db.insertIntoTable(mp, em)
 					confirmInsertLabel = tk.Label(self.setupFrame, text = "Successful", bg = 'Grey', font = self.labelFont)
 					confirmInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 					confirmInsertLabel.after(2000, confirmInsertLabel.destroy)
 					self.controller.show_frame(LoginFrame)
 				else:
-					print("otp is false")
+					# print("otp is false")
 					errorInsertLabel = tk.Label(self.setupFrame, text = "Try again!", bg = 'Grey', font = self.labelFont)
 					errorInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 					errorInsertLabel.after(2000, errorInsertLabel.destroy)
@@ -86,13 +86,13 @@ class SetupFrame(tk.Frame):
 	def checkOTP(self):
 		enteredOTP = self.otpentry.get()
 		if (enteredOTP == self.generatedOTP):
-			print("OTP Correct")
+			# print("OTP Correct")
 			confirmOtpLabel = tk.Label(self.setupFrame, text = "OTP Correct", bg = 'Grey', font = self.labelFont)
 			confirmOtpLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			confirmOtpLabel.after(2000, confirmOtpLabel.destroy)
 			return True
 		else:
-			print("OTP Incorrect")
+			# print("OTP Incorrect")
 			wrongOtpLabel = tk.Label(self.setupFrame, text = "OTP Incorrect", bg = 'Grey', font = self.labelFont)
 			wrongOtpLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			wrongOtpLabel.after(2000, wrongOtpLabel.destroy)
@@ -107,4 +107,4 @@ class SetupFrame(tk.Frame):
 		confirmLabel = tk.Label(self.setupFrame, text="Sending Email",	bg='Grey', font=self.labelFont)
 		confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 		confirmLabel.after(2000, confirmLabel.destroy())
-		print("OTP send")
+		# print("OTP send")

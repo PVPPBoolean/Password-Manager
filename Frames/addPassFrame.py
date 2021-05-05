@@ -50,4 +50,4 @@ class AddPassFrame(tk.Frame):
 
 	def savePass(self):
 		self.sd.insertDataTable(self.siteText.get(), self.usernameText.get(), self.passText.get())
-		print(self.siteText.get(), " : ", self.usernameText.get(), " : ", self.passText.get())
+		# print(self.siteText.get(), " : ", self.usernameText.get(), " : ", self.passText.get())

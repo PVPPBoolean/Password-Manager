@@ -36,3 +36,20 @@ class siteData:
 		if not c:
 			return ("")
 		return (c[0])
+
+	def deleteDataTable(self, sn):
+		dDelete = "DELETE FROM data WHERE siteName = (?)"
+		# try:
+		self.cursor.execute(dDelete, (sn, ))
+		self.connect.commit()
+			# print("Deleting")
+		# except:
+		# 	print("Can't Delete")
+
+	def viewData(self):
+		dView = """
+			SELECT siteName, siteUsername FROM data 
+		"""
+		self.cursor.execute(dView)
+		allData = self.cursor.fetchall()
+		return allData 

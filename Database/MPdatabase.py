@@ -82,7 +82,7 @@ class PMPDatabase:
 		"""
 		self.cursor.execute(qSelect)
 		data = self.cursor.fetchall()
-		print(data[0][1])
+		# print(data[0][1])
 		if mail == data[0][1]:
 			return True
 		return False
@@ -95,7 +95,7 @@ class PMPDatabase:
 		"""
 		self.cursor.execute(qSelect)
 		data = self.cursor.fetchall()
-		print(data[0][1])
+		# print(data[0][1])
 		mail = data[0][1]
 		return mail
 
