@@ -18,7 +18,7 @@ class HomeFrame(tk.Frame):
 		self.homeFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
 
 		self.homeBoxFrame = tk.Frame(self.homeFrame, bd=5)
-		self.homeBoxFrame.place(relx=0.05, rely=0.05, relwidth=0.9, relheight=0.8)
+		self.homeBoxFrame.place(relx=0.05, rely=0.025, relwidth=0.9, relheight=0.8)
 
 		# self.allPassTreeview = ttk.Treeview(self.homeBoxFrame)
 		# self.allPassTreeview.place(relheight=1, relwidth=1)
@@ -47,11 +47,11 @@ class HomeFrame(tk.Frame):
 		self.viewData.delete(1.0, 'end')
 		VObj = siteData()
 		allPass = VObj.viewData()
-		heading = "SiteName \t\t | \t Username\n"
+		heading = "\tSiteName \t\t | \t Username\n"
 		heading += "-"*90+"\n"
 		self.viewData.insert('insert', heading)
 		for d in allPass:
-			info = d[0]+" \t\t | \t "+d[1]+"\n"
+			info ="\t"+d[0]+" \t\t | \t "+d[1]+"\n"
 			info+="-"*90+"\n"
 			self.viewData.insert('insert', info)
 		self.viewData.config(state='disabled')

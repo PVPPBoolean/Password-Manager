@@ -33,10 +33,10 @@ class AddPassFrame(tk.Frame):
 		self.passText.place(relx=0.05, rely=0.35, relheight=0.05, relwidth=0.75)
 
 		self.pwGenBtn = tk.Button(self.addPassFrame, text = "Generate Password", command=self.generatePass)
-		self.pwGenBtn.place(relx=0.05, rely=0.4, relwidth=0.425, relheight=0.1)
+		self.pwGenBtn.place(relx=0.05, rely=0.45, relwidth=0.425, relheight=0.1)
 		
 		self.saveBtn = tk.Button(self.addPassFrame, text = "Save Password", command=self.savePass)
-		self.saveBtn.place(relx=0.525, rely=0.4, relwidth=0.425, relheight=0.1)
+		self.saveBtn.place(relx=0.525, rely=0.45, relwidth=0.425, relheight=0.1)
 
 		self.homeBtn = tk.Button(self.addPassFrame, text = "Home", command=lambda:[controller.show_frame(HomeFrame)], font = self.labelFont)
 		self.homeBtn.place(relx=0.35, rely=0.85, relwidth=0.3, relheight=0.1)
@@ -50,4 +50,7 @@ class AddPassFrame(tk.Frame):
 
 	def savePass(self):
 		self.sd.insertDataTable(self.siteText.get(), self.usernameText.get(), self.passText.get())
+		self.siteText.delete(0, 'end')
+		self.usernameText.delete(0, 'end')
+		self.passText.delete(0, 'end')
 		# print(self.siteText.get(), " : ", self.usernameText.get(), " : ", self.passText.get())

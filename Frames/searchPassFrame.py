@@ -38,7 +38,7 @@ class SearchPassFrame(tk.Frame):
 		self.copyBtn.place(relx=0.525, rely=0.35, relheight=0.05, relwidth=0.425)
 		
 		self.deleteBtn = tk.Button(self.searchPassFrame, text = "Delete", command=self.deletePass, font = self.labelFont)
-		self.deleteBtn.place(relx=0.525, rely=0.55, relwidth=0.3, relheight=0.1)
+		self.deleteBtn.place(relx=0.25, rely=0.55, relwidth=0.5, relheight=0.1)
 
 		self.homeBtn = tk.Button(self.searchPassFrame, text = "Home", command=lambda:[controller.show_frame(HomeFrame)], font = self.labelFont)
 		self.homeBtn.place(relx=0.35, rely=0.85, relwidth=0.3, relheight=0.1)
