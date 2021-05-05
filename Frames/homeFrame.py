@@ -5,8 +5,8 @@ from Frames.addPassFrame import AddPassFrame
 
 class HomeFrame(tk.Frame):
     def __init__(self, parent, controller):
-
         tk.Frame.__init__(self, parent)
+        from Frames.loginFrame import LoginFrame
         self.entryFont = ("Rockwell", 12)
         self.labelFont = ("Rockwell", 12)
 
@@ -29,3 +29,6 @@ class HomeFrame(tk.Frame):
         
         self.searchPassBtn = tk.Button(self.homeFrame, text = "Retrive Password", command=lambda:[controller.show_frame(SearchPassFrame)], font = self.labelFont)
         self.searchPassBtn.place(relx=0.55, rely=0.85, relwidth=0.3, relheight=0.1)
+        
+        self.logoutBtn = tk.Button(self.homeFrame, text = "O", command=lambda:[controller.show_frame(LoginFrame)])
+        self.logoutBtn.place(relx=0.95, rely=0.05, relwidth=0.05, relheight=0.05)
