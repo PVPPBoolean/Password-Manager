@@ -7,6 +7,17 @@ from Backend.sendMail import SendMail
 class SetupFrame(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self,parent)
+		#colors
+		self.primaryColor = '#6200ee'
+		self.secondaryColor = '#3700b3'
+		self.backgroundColor = '#000000'
+		self.surface1Color = '#121212'
+		self.surface2Color = '#212121'
+		self.successColor = '#03dac6'
+		self.errorColor = '#cf6679'
+		self.priTextColor = '#000000'
+		self.secTextColor = '#ffffff'
+		#fonts
 		self.entryFont = ("Rockwell", 12)
 		self.labelFont = ("Rockwell", 12)
 
@@ -14,41 +25,33 @@ class SetupFrame(tk.Frame):
 		otpObj = Otp()
 		self.generatedOTP = otpObj.generateOTP()
 
-		self.setupFrame = tk.LabelFrame(self, text="Setup")
+		self.setupFrame = tk.LabelFrame(self, text="Setup", bg=self.backgroundColor, fg=self.secTextColor)
 		self.setupFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
-
-		self.emailLabel = tk.Label(self.setupFrame, text = "Email", font = self.labelFont)
+		self.emailLabel = tk.Label(self.setupFrame, text = "Email", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
 		self.emailLabel.place(relx=0.275, rely=0.1, relwidth=0.45, relheight=0.07)
-
 		# User will enter email for the first time
-		self.emailentry = tk.Entry(self.setupFrame, width = 20, bd = 2, font = self.entryFont)
+		self.emailentry = tk.Entry(self.setupFrame, width = 20, bd = 2, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
 		self.emailentry.place(relx=0.23, rely=0.2, relwidth=0.6, relheight=0.07)
 		self.emailentry.delete(0, 'end')
-
 		# Will send OTP to verify Email
-		self.sendOtpButton = tk.Button(self.setupFrame, text="Send OTP", command=self.sendOtp,	font=self.labelFont)
+		self.sendOtpButton = tk.Button(self.setupFrame, text="Send OTP", command=self.sendOtp, bg=self.primaryColor, fg=self.secTextColor,	font=self.labelFont)
 		self.sendOtpButton.place(relx=0.35, rely=0.3, relwidth=0.3, relheight=0.07)
-
 		# User will enter OTP from the email
-		self.otpentry = tk.Entry(self.setupFrame, width=20, font=self.entryFont)
+		self.otpentry = tk.Entry(self.setupFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
 		self.otpentry.place(relx=0.275, rely=0.4, relwidth=0.45, relheight=0.07)
 		self.otpentry.insert(0, "Enter OTP here")
 		self.otpentry.delete(0, 'end')
-
 		# Will check the entered OTP with generated OTP
-		self.otpEnterButton = tk.Button(self.setupFrame, text="Check OTP",	command=lambda: [self.checkOTP()], font=self.labelFont)
-		self.otpEnterButton.place(relx=0.35, rely=0.5, relwidth=0.3, relheight=0.1)
-
-		self.passLabel = tk.Label(self.setupFrame, text = "Password", font = self.labelFont)
+		self.otpEnterButton = tk.Button(self.setupFrame, text="Check OTP",	command=lambda: [self.checkOTP()], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
+		self.otpEnterButton.place(relx=0.35, rely=0.5, relwidth=0.3, relheight=0.07)
+		self.passLabel = tk.Label(self.setupFrame, text = "Password", font = self.labelFont, bg=self.backgroundColor, fg=self.secTextColor)
 		self.passLabel.place(relx=0.275, rely=0.6, relwidth=0.45, relheight=0.07)
-
 		# User will enter the password for the first time
-		self.passentry = tk.Entry(self.setupFrame, show = "*", width = 20, bd = 2, font = self.entryFont)
+		self.passentry = tk.Entry(self.setupFrame, show = "*", width = 20, bd = 2, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
 		self.passentry.place(relx=0.23, rely=0.7, relwidth=0.6, relheight=0.07)
 		self.passentry.delete(0, 'end')
-
 		# Will insert email and password to database
-		self.enter = tk.Button(self.setupFrame, text = "Enter", font = self.labelFont, command = lambda:[self.insertPass(self.checkOTP())])
+		self.enter = tk.Button(self.setupFrame, text = "Enter", bg=self.primaryColor, fg=self.secTextColor, font = self.labelFont, command = lambda:[self.insertPass(self.checkOTP())])
 		self.enter.place(relx=0.35, rely=0.8, relwidth=0.3, relheight=0.1)
 
 	# Will check the entered OTP with otpStatus from checkOTP()
@@ -61,20 +64,20 @@ class SetupFrame(tk.Frame):
 				if(otpStatus == True):
 					# print("otp is true")
 					db.insertIntoTable(mp, em)
-					confirmInsertLabel = tk.Label(self.setupFrame, text = "Successful", bg = 'Grey', font = self.labelFont)
+					confirmInsertLabel = tk.Label(self.setupFrame, text = "Successful", bg = self.successColor, fg = self.priTextColor, font = self.labelFont)
 					confirmInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 					confirmInsertLabel.after(2000, confirmInsertLabel.destroy)
 					self.controller.show_frame(LoginFrame)
 				else:
 					# print("otp is false")
-					errorInsertLabel = tk.Label(self.setupFrame, text = "Try again!", bg = 'Grey', font = self.labelFont)
+					errorInsertLabel = tk.Label(self.setupFrame, text = "Try again!", bg = self.errorColor, fg = self.priTextColor, font = self.labelFont)
 					errorInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 					errorInsertLabel.after(2000, errorInsertLabel.destroy)
 					self.emailentry.delete(0, 'end')
 					self.passentry.delete(0, 'end')
 					self.otpentry.delete(0, 'end')
 			except:
-				errorInsertLabel = tk.Label(self.setupFrame, text = "Database Error Try again", bg = 'Grey', font = self.labelFont)
+				errorInsertLabel = tk.Label(self.setupFrame, text = "Database Error Try again", bg = self.errorColor, fg = self.priTextColor, font = self.labelFont)
 				errorInsertLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 				errorInsertLabel.after(2000, errorInsertLabel.destroy)
 			finally:
@@ -87,24 +90,30 @@ class SetupFrame(tk.Frame):
 		enteredOTP = self.otpentry.get()
 		if (enteredOTP == self.generatedOTP):
 			# print("OTP Correct")
-			confirmOtpLabel = tk.Label(self.setupFrame, text = "OTP Correct", bg = 'Grey', font = self.labelFont)
+			confirmOtpLabel = tk.Label(self.setupFrame, text = "OTP Correct", bg = self.successColor, fg = self.priTextColor, font = self.labelFont)
 			confirmOtpLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			confirmOtpLabel.after(2000, confirmOtpLabel.destroy)
 			return True
 		else:
 			# print("OTP Incorrect")
-			wrongOtpLabel = tk.Label(self.setupFrame, text = "OTP Incorrect", bg = 'Grey', font = self.labelFont)
+			wrongOtpLabel = tk.Label(self.setupFrame, text = "OTP Incorrect", bg = self.errorColor, fg = self.priTextColor, font = self.labelFont)
 			wrongOtpLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			wrongOtpLabel.after(2000, wrongOtpLabel.destroy)
 			return False
 
 	# Send mail with generated OTP
 	def sendOtp(self):
-		mail = SendMail()
-		subject = 'OTP Verification'
-		message = "Your OTP for Password Manager is:\n" + str(self.generatedOTP)
-		mail.send((self.emailentry.get()), subject, message)
-		confirmLabel = tk.Label(self.setupFrame, text="Sending Email",	bg='Grey', font=self.labelFont)
-		confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
-		confirmLabel.after(2000, confirmLabel.destroy())
-		# print("OTP send")
+		try:
+			mail = SendMail()
+			subject = 'OTP Verification'
+			message = "Your OTP for Password Manager is:\n" + str(self.generatedOTP)
+			mail.send((self.emailentry.get()), subject, message)
+			mailLabel = tk.Label(self.setupFrame, text="Otp Sent", font=self.labelFont, bg = self.successColor, fg = self.priTextColor)
+			mailLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
+			mailLabel.after(6000, mailLabel.destroy())
+			print("OTP send")
+		except:
+			mailErrorLabel = tk.Label(self.setupFrame, text="Error in Sending mail", font=self.labelFont, bg = self.errorColor, fg = self.priTextColor)
+			mailErrorLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
+			mailErrorLabel.after(6000, mailErrorLabel.destroy())
+			print("OTP NOT send")

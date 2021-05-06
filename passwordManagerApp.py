@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter.font import families
+from PIL import ImageTk , Image
 from Frames.forgotPassFrame import ForgotPassFrame
 from Frames.loginFrame import LoginFrame
 from Frames.setupFrame import SetupFrame
@@ -21,6 +23,10 @@ class PasswordManagerApp(tk.Tk):
 		tk.Tk.__init__(self, *args, **kwargs)
 		tk.Tk.geometry(self, '550x500+600+150')
 		tk.Tk.title(self, 'Password Manager')
+		tk.Tk.resizable(self, width=False, height=False)
+		pwmLogo = tk.PhotoImage(file="img/pwm.png")
+		pwmLogo = (pwmLogo.zoom(25)).subsample(32)
+		tk.Tk.iconphoto(self, True , pwmLogo)
 
 		container = tk.Frame(self)
 		container.pack(side="top", fill="both", expand=True)
