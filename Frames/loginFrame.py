@@ -26,14 +26,18 @@ class LoginFrame(tk.Frame):
 
 		self.loginFrame = tk.LabelFrame(self, text="Login", bd=5, bg=self.backgroundColor, fg=self.secTextColor)
 		self.loginFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
+		self.titleLabel = tk.Label(self.loginFrame, text='Password Manager', bg = self.backgroundColor, fg = self.primaryColor, font=("Rockwell", 20, "bold"))
+		self.titleLabel.place(relx=0.25, rely=0.2, relheight=0.1, relwidth=0.5)
+		self.epassLabel = tk.Label(self.loginFrame, text='Enter password', bg = self.backgroundColor, fg = self.secTextColor, font=self.labelFont)
+		self.epassLabel.place(relx=0.35, rely=0.37, relheight=0.07, relwidth=0.3)
 		self.mpassentry = tk.Entry(self.loginFrame, show = "*", width = 20, font = self.entryFont, bg=self.surface1Color, fg=self.primaryColor)
-		self.mpassentry.place(relx=0.275, rely=0.384, relwidth=0.45, relheight=0.07)
+		self.mpassentry.place(relx=0.25, rely=0.45, relwidth=0.5, relheight=0.07)
 		self.mpassentry.bind("<Return>", self.shortcuts)
 		self.mpassentry.delete(0, 'end')
 		self.mpassenter = tk.Button(self.loginFrame, text = "Enter", bg=self.primaryColor, fg=self.secTextColor, command = lambda: self.checkPass(), font = self.labelFont)
-		self.mpassenter.place(relx=0.35, rely=0.52, relwidth=0.3, relheight=0.1)
-		self.forgotPass = tk.Button(self.loginFrame, text = "Forgot Password", bg=self.primaryColor, fg=self.secTextColor, command = lambda: controller.show_frame(ForgotPassFrame))
-		self.forgotPass.place(relx=0.35, rely=0.7, relwidth=0.35, relheight=0.08)
+		self.mpassenter.place(relx=0.35, rely=0.6, relwidth=0.3, relheight=0.07)
+		self.forgotPass = tk.Button(self.loginFrame, text = "Forgot Password", bg=self.surface2Color, fg=self.secTextColor, command = lambda: controller.show_frame(ForgotPassFrame))
+		self.forgotPass.place(relx=0.4, rely=0.7, relwidth=0.2, relheight=0.05)
 
 
 	# Shortcut for Enter key 

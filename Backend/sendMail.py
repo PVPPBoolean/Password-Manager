@@ -23,3 +23,4 @@ class SendMail():
 		msg.attach(MIMEText(Message, 'plain'))
 		text = msg.as_string()
 		self.server.sendmail(self.sender, reciever, text)
+		return

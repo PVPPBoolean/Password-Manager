@@ -19,9 +19,10 @@ class SearchPassFrame(tk.Frame):
 		self.secTextColor = '#ffffff'
 		#fonts
 		self.entryFont = ("Rockwell", 12)
-		self.labelFont = ("Rockwell", 12)
+		self.labelFont = ("Rockwell", 12, "bold")
 		self.Gobj = Pgenerator()
 		self.Pobj = siteData()
+
 		self.searchPassFrame = tk.LabelFrame(self, text="Search Password", bd=5, bg=self.backgroundColor, fg=self.secTextColor)
 		self.searchPassFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
 		self.searchLabel = tk.Label(self.searchPassFrame, text='Enter the website name', bg=self.backgroundColor, fg=self.secTextColor)
@@ -30,23 +31,22 @@ class SearchPassFrame(tk.Frame):
 		self.siteText.place(relx=0.05, rely=0.15, relheight=0.05, relwidth=0.75)
 		self.searchBtn = tk.Button(self.searchPassFrame, text='Q', bg='#03dac5', fg=self.priTextColor, command=self.searchPass)
 		self.searchBtn.place(relx=0.85, rely=0.1375, relheight=0.075, relwidth=0.075)
-		self.siteLabel = tk.Label(self.searchPassFrame, text='Site name', bg=self.surface2Color, fg=self.secTextColor)
+		self.siteLabel = tk.Label(self.searchPassFrame, text='Webite name', bg=self.surface2Color, fg=self.secTextColor)
 		self.siteLabel.place(relx=0.05, rely=0.25, relheight=0.05, relwidth=0.425)
-		self.usernameLabel = tk.Label(self.searchPassFrame, text='Username', bg=self.surface2Color, fg=self.secTextColor)
+		self.usernameLabel = tk.Label(self.searchPassFrame, text='Website Username', bg=self.surface2Color, fg=self.secTextColor)
 		self.usernameLabel.place(relx=0.525, rely=0.25, relheight=0.05, relwidth=0.425)		
 		self.passLabel = tk.Label(self.searchPassFrame, text='Password', bg=self.surface2Color, fg=self.secTextColor)
-		self.passLabel.place(relx=0.05, rely=0.35, relheight=0.05, relwidth=0.425)
-		self.copyBtn = tk.Button(self.searchPassFrame, text = "Copy to Clipboard", command=self.copy, bg=self.surface2Color, fg=self.secTextColor)
-		self.copyBtn.place(relx=0.525, rely=0.35, relheight=0.05, relwidth=0.425)		
-		self.deleteBtn = tk.Button(self.searchPassFrame, text = "Delete", command=self.deletePass, bg=self.errorColor, fg=self.priTextColor, font = self.labelFont)
-		self.deleteBtn.place(relx=0.25, rely=0.55, relwidth=0.5, relheight=0.1)
+		self.passLabel.place(relx=0.28, rely=0.35, relheight=0.05, relwidth=0.425)
+		self.copyBtn = tk.Button(self.searchPassFrame, text = "Copy", command=self.copy, bg=self.surface2Color, fg=self.secTextColor)
+		self.copyBtn.place(relx=0.36, rely=0.45, relheight=0.05, relwidth=0.12)		
+		self.deleteBtn = tk.Button(self.searchPassFrame, text = "Delete", command=self.deletePass, bg=self.errorColor, fg=self.priTextColor) # , font = self.labelFont
+		self.deleteBtn.place(relx=0.54, rely=0.45, relwidth=0.11, relheight=0.05)
 
 		self.homeBtn = tk.Button(self.searchPassFrame, text = "Home", command=lambda:[controller.show_frame(HomeFrame)], bg=self.primaryColor, fg=self.secTextColor, font = self.labelFont)
-		self.homeBtn.place(relx=0.35, rely=0.85, relwidth=0.3, relheight=0.1)
-
+		self.homeBtn.place(relx=0.35, rely=0.7, relwidth=0.3, relheight=0.08)
+		# relx=0.35, rely=0.7, relwidth=0.3, relheight=0.1
 
 	def searchPass(self):
-		# print("searched")
 		returnedData = self.Pobj.searchPass(self.siteText.get())
 		if returnedData != "": 
 			self.siteLabel.config(text = "Site: "+returnedData[0])
@@ -67,9 +67,12 @@ class SearchPassFrame(tk.Frame):
 		self.passLabel.config(text = "Password")
 
 	def deletePass(self):
-		dataToDelete = (self.passLabel['text']).split(" ")
-		# print(dataToDelete[1])
-		self.Pobj.deleteDataTable(dataToDelete[1])
+		dataToDelete = ((self.siteLabel['text']).split(" "))[1]
+		self.Pobj.deleteDataTable(dataToDelete)
 		deleteLabel = tk.Label(self.searchPassFrame, text = "Site details deleted ", bg=self.successColor, fg=self.priTextColor, font = self.labelFont)
 		deleteLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 		deleteLabel.after(2000, deleteLabel.destroy)
+		self.siteText.delete(0, "end")
+		self.siteLabel['text'] = "Website Name"
+		self.usernameLabel['text'] = "username"
+		self.passLabel['text'] = "Password"

@@ -33,23 +33,25 @@ class siteData:
 
 		self.cursor.execute(dSearchSiteName)
 		c = self.cursor.fetchall()
+		self.connect.commit()
+		print(c)
 		if not c:
 			return ("")
 		return (c[0])
 
 	def deleteDataTable(self, sn):
-		dDelete = "DELETE FROM data WHERE siteName = (?)"
-		# try:
-		self.cursor.execute(dDelete, (sn, ))
-		self.connect.commit()
-			# print("Deleting")
-		# except:
-		# 	print("Can't Delete")
+		dDelete = ("DELETE FROM data WHERE siteName LIKE '%{}%'").format(sn)
+		try:
+			self.cursor.execute(dDelete)
+			self.connect.commit()
+		except Exception as e:
+			print(e)
 
 	def viewData(self):
 		dView = """
 			SELECT siteName, siteUsername FROM data 
 		"""
 		self.cursor.execute(dView)
+		self.connect.commit()
 		allData = self.cursor.fetchall()
-		return allData 
+		return allData

@@ -7,7 +7,7 @@ from Backend.sendMail import SendMail
 class SetupFrame(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self,parent)
-		#colors
+		# colors
 		self.primaryColor = '#6200ee'
 		self.secondaryColor = '#3700b3'
 		self.backgroundColor = '#000000'
@@ -17,7 +17,8 @@ class SetupFrame(tk.Frame):
 		self.errorColor = '#cf6679'
 		self.priTextColor = '#000000'
 		self.secTextColor = '#ffffff'
-		#fonts
+
+		# fonts
 		self.entryFont = ("Rockwell", 12)
 		self.labelFont = ("Rockwell", 12)
 
@@ -27,32 +28,32 @@ class SetupFrame(tk.Frame):
 
 		self.setupFrame = tk.LabelFrame(self, text="Setup", bg=self.backgroundColor, fg=self.secTextColor)
 		self.setupFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
-		self.emailLabel = tk.Label(self.setupFrame, text = "Email", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
-		self.emailLabel.place(relx=0.275, rely=0.1, relwidth=0.45, relheight=0.07)
+		self.emailLabel = tk.Label(self.setupFrame, bd = 2, text = "Email", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
+		self.emailLabel.place(relx=0.27, rely=0.08, relwidth=0.45, relheight=0.07)
 		# User will enter email for the first time
-		self.emailentry = tk.Entry(self.setupFrame, width = 20, bd = 2, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
-		self.emailentry.place(relx=0.23, rely=0.2, relwidth=0.6, relheight=0.07)
+		self.emailentry = tk.Entry(self.setupFrame, width = 20, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
+		self.emailentry.place(relx=0.20, rely=0.15, relwidth=0.6, relheight=0.07)
 		self.emailentry.delete(0, 'end')
 		# Will send OTP to verify Email
 		self.sendOtpButton = tk.Button(self.setupFrame, text="Send OTP", command=self.sendOtp, bg=self.primaryColor, fg=self.secTextColor,	font=self.labelFont)
-		self.sendOtpButton.place(relx=0.35, rely=0.3, relwidth=0.3, relheight=0.07)
+		self.sendOtpButton.place(relx=0.35, rely=0.26, relwidth=0.3, relheight=0.06)
 		# User will enter OTP from the email
 		self.otpentry = tk.Entry(self.setupFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
-		self.otpentry.place(relx=0.275, rely=0.4, relwidth=0.45, relheight=0.07)
-		self.otpentry.insert(0, "Enter OTP here")
+		self.otpentry.place(relx=0.268, rely=0.4, relwidth=0.45, relheight=0.07)
+		# self.otpentry.insert(0, "Enter OTP here")
 		self.otpentry.delete(0, 'end')
 		# Will check the entered OTP with generated OTP
 		self.otpEnterButton = tk.Button(self.setupFrame, text="Check OTP",	command=lambda: [self.checkOTP()], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
-		self.otpEnterButton.place(relx=0.35, rely=0.5, relwidth=0.3, relheight=0.07)
+		self.otpEnterButton.place(relx=0.35, rely=0.5, relwidth=0.3, relheight=0.06)
 		self.passLabel = tk.Label(self.setupFrame, text = "Password", font = self.labelFont, bg=self.backgroundColor, fg=self.secTextColor)
-		self.passLabel.place(relx=0.275, rely=0.6, relwidth=0.45, relheight=0.07)
+		self.passLabel.place(relx=0.273, rely=0.63, relwidth=0.45, relheight=0.07)
 		# User will enter the password for the first time
 		self.passentry = tk.Entry(self.setupFrame, show = "*", width = 20, bd = 2, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
-		self.passentry.place(relx=0.23, rely=0.7, relwidth=0.6, relheight=0.07)
+		self.passentry.place(relx=0.20, rely=0.7, relwidth=0.6, relheight=0.07)
 		self.passentry.delete(0, 'end')
 		# Will insert email and password to database
 		self.enter = tk.Button(self.setupFrame, text = "Enter", bg=self.primaryColor, fg=self.secTextColor, font = self.labelFont, command = lambda:[self.insertPass(self.checkOTP())])
-		self.enter.place(relx=0.35, rely=0.8, relwidth=0.3, relheight=0.1)
+		self.enter.place(relx=0.38, rely=0.82, relwidth=0.25, relheight=0.08)
 
 	# Will check the entered OTP with otpStatus from checkOTP()
 	def insertPass(self, otpStatus):

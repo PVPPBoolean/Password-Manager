@@ -82,7 +82,6 @@ class PMPDatabase:
 		"""
 		self.cursor.execute(qSelect)
 		data = self.cursor.fetchall()
-		# print(data[0][1])
 		if mail == data[0][1]:
 			return True
 		return False
@@ -98,14 +97,3 @@ class PMPDatabase:
 		# print(data[0][1])
 		mail = data[0][1]
 		return mail
-
-	# Used in updateIntoTable() to get Password from databse(Not Used)
-	# def getPass(self):
-	# 	qSelect = """
-	# 		SELECT * FROM masterTable
-	# 	"""
-	# 	self.cursor.execute(qSelect)
-	# 	data = self.cursor.fetchall()
-	# 	print(data[0][0])
-	# 	hpass = data[0][0]
-	# 	return hpass

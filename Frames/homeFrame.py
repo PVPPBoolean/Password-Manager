@@ -35,13 +35,13 @@ class HomeFrame(tk.Frame):
 		self.viewData.place(relheight=1, relwidth=1)
 		#button
 		self.refreshBtn = tk.Button(self.homeFrame, command=self.insertScrolledText, bg=self.successColor)
-		self.refreshBtn.place(relx=0.96, rely=0.05, relwidth=0.025, relheight=0.025)
+		self.refreshBtn.place(relx=0.96, rely=0.045, relwidth=0.029, relheight=0.025)
 		self.logoutBtn = tk.Button(self.homeFrame, command=lambda:[controller.show_frame(LoginFrame)], bg=self.errorColor)
-		self.logoutBtn.place(relx=0.96, rely=0.10, relwidth=0.025, relheight=0.025)
+		self.logoutBtn.place(relx=0.96, rely=0.095, relwidth=0.029, relheight=0.025)
 		self.newPassBtn = tk.Button(self.homeFrame, text = "Add New Password", bg=self.primaryColor, fg=self.secTextColor, command=lambda:[controller.show_frame(AddPassFrame)], font = self.labelFont)
-		self.newPassBtn.place(relx=0.15, rely=0.85, relwidth=0.3, relheight=0.1)	
+		self.newPassBtn.place(relx=0.15, rely=0.855, relwidth=0.3, relheight=0.08)
 		self.searchPassBtn = tk.Button(self.homeFrame, text = "Retrive Password", bg=self.primaryColor, fg=self.secTextColor, command=lambda:[controller.show_frame(SearchPassFrame)], font = self.labelFont)
-		self.searchPassBtn.place(relx=0.55, rely=0.85, relwidth=0.3, relheight=0.1)
+		self.searchPassBtn.place(relx=0.55, rely=0.855, relwidth=0.3, relheight=0.08)
 		
 		self.insertScrolledText()
 
