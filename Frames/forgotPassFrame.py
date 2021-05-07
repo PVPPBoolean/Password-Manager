@@ -34,7 +34,7 @@ class ForgotPassFrame(tk.Frame):
 		self.titleLabel = tk.Label(self.forgotPassFrame, text='Forgot Password ?', bg = self.backgroundColor, fg = self.primaryColor, font=("Rockwell", 18, "bold"))
 		self.titleLabel.place(relx=0.25, rely=0.15, relheight=0.1, relwidth=0.5)
 		self.emailLabel = tk.Label(self.forgotPassFrame, text='Enter registered email id', bg = self.backgroundColor, fg = self.secTextColor, font=self.labelFont)
-		self.emailLabel.place(relx=0.25, rely=0.30, relheight=0.07, relwidth=0.5)
+		self.emailLabel.place(relx=0.25, rely=0.32, relheight=0.07, relwidth=0.5)
 		self.emailentry = tk.Entry(self.forgotPassFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
 		self.emailentry.place(relx=0.25, rely=0.38, relwidth=0.5, relheight=0.05)
 		self.emailentry.insert(0, "Enter your Email")
@@ -45,7 +45,7 @@ class ForgotPassFrame(tk.Frame):
 		self.sendOtpButton.place(relx=0.35, rely=0.45, relwidth=0.3, relheight=0.07)
 		# User will enter OTP here
 		self.otpLabel = tk.Label(self.forgotPassFrame, text='Enter Otp', bg = self.backgroundColor, fg = self.secTextColor, font=self.labelFont)
-		self.otpLabel.place(relx=0.25, rely=0.55, relheight=0.07, relwidth=0.5)
+		self.otpLabel.place(relx=0.25, rely=0.56, relheight=0.07, relwidth=0.5)
 		self.otpentry = tk.Entry(self.forgotPassFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
 		self.otpentry.place(relx=0.25, rely=0.62, relwidth=0.5, relheight=0.05)
 		self.otpentry.bind("<Return>", self.shortcuts)

@@ -21,7 +21,7 @@ Pdb.createDataTable()
 class PasswordManagerApp(tk.Tk):
 	def __init__(self, *args , **kwargs):
 		tk.Tk.__init__(self, *args, **kwargs)
-		tk.Tk.geometry(self, '550x500+600+150')
+		tk.Tk.geometry(self, '550x500+450+120')
 		tk.Tk.title(self, 'Password Manager')
 		tk.Tk.resizable(self, width=False, height=False)
 		pwmLogo = tk.PhotoImage(file="img/pwm.png")

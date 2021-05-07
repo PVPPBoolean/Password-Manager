@@ -34,7 +34,7 @@ class siteData:
 		self.cursor.execute(dSearchSiteName)
 		c = self.cursor.fetchall()
 		self.connect.commit()
-		print(c)
+		# print(c)
 		if not c:
 			return ("")
 		return (c[0])

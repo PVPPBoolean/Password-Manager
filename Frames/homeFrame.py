@@ -21,7 +21,7 @@ class HomeFrame(tk.Frame):
 		self.secTextColor = '#ffffff'
 		#fonts
 		self.entryFont = ("Rockwell", 12)
-		self.labelFont = ("Rockwell", 12)
+		self.labelFont = ("Rockwell", 12, "bold")
 
 		#logo
 		# refreshIcon = PhotoImage(file=r"img\search-solid.svg")

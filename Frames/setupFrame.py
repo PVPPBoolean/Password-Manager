@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter.constants import LEFT
 from Database.MPdatabase import PMPDatabase
 from Backend.OTPGenerator import Otp
 from Backend.sendMail import SendMail
@@ -20,7 +21,7 @@ class SetupFrame(tk.Frame):
 
 		# fonts
 		self.entryFont = ("Rockwell", 12)
-		self.labelFont = ("Rockwell", 12)
+		self.labelFont = ("Rockwell", 12, "bold")
 
 		self.controller = controller
 		otpObj = Otp()
@@ -28,32 +29,35 @@ class SetupFrame(tk.Frame):
 
 		self.setupFrame = tk.LabelFrame(self, text="Setup", bg=self.backgroundColor, fg=self.secTextColor)
 		self.setupFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
-		self.emailLabel = tk.Label(self.setupFrame, bd = 2, text = "Email", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
-		self.emailLabel.place(relx=0.27, rely=0.08, relwidth=0.45, relheight=0.07)
+		self.titleLabel = tk.Label(self.setupFrame, text='Setup', bg = self.backgroundColor, fg = self.primaryColor, font=("Rockwell", 18, "bold"))
+		self.titleLabel.place(relx=0.25, rely=0.1, relheight=0.1, relwidth=0.5)
 		# User will enter email for the first time
+		self.emailLabel = tk.Label(self.setupFrame, bd = 2, text = "Email", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
+		self.emailLabel.place(relx=0.25, rely=0.2, relwidth=0.5, relheight=0.07)
 		self.emailentry = tk.Entry(self.setupFrame, width = 20, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
-		self.emailentry.place(relx=0.20, rely=0.15, relwidth=0.6, relheight=0.07)
+		self.emailentry.place(relx=0.25, rely=0.26, relwidth=0.5, relheight=0.05)
 		self.emailentry.delete(0, 'end')
 		# Will send OTP to verify Email
 		self.sendOtpButton = tk.Button(self.setupFrame, text="Send OTP", command=self.sendOtp, bg=self.primaryColor, fg=self.secTextColor,	font=self.labelFont)
-		self.sendOtpButton.place(relx=0.35, rely=0.26, relwidth=0.3, relheight=0.06)
-		# User will enter OTP from the email
-		self.otpentry = tk.Entry(self.setupFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
-		self.otpentry.place(relx=0.268, rely=0.4, relwidth=0.45, relheight=0.07)
-		# self.otpentry.insert(0, "Enter OTP here")
-		self.otpentry.delete(0, 'end')
+		self.sendOtpButton.place(relx=0.35, rely=0.34, relwidth=0.3, relheight=0.07)
 		# Will check the entered OTP with generated OTP
+		# User will enter OTP from the email
+		self.otpLabel = tk.Label(self.setupFrame, bd = 2, text = "OTP", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
+		self.otpLabel.place(relx=0.25, rely=0.43, relwidth=0.5, relheight=0.07)
+		self.otpentry = tk.Entry(self.setupFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
+		self.otpentry.place(relx=0.25, rely=0.49, relwidth=0.5, relheight=0.05)
+		self.otpentry.delete(0, 'end')
 		self.otpEnterButton = tk.Button(self.setupFrame, text="Check OTP",	command=lambda: [self.checkOTP()], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
-		self.otpEnterButton.place(relx=0.35, rely=0.5, relwidth=0.3, relheight=0.06)
-		self.passLabel = tk.Label(self.setupFrame, text = "Password", font = self.labelFont, bg=self.backgroundColor, fg=self.secTextColor)
-		self.passLabel.place(relx=0.273, rely=0.63, relwidth=0.45, relheight=0.07)
+		self.otpEnterButton.place(relx=0.35, rely=0.57, relwidth=0.3, relheight=0.06)
 		# User will enter the password for the first time
+		self.passLabel = tk.Label(self.setupFrame, text = "Password", font = self.labelFont, bg=self.backgroundColor, fg=self.secTextColor)
+		self.passLabel.place(relx=0.25, rely=0.66, relwidth=0.5, relheight=0.07)
 		self.passentry = tk.Entry(self.setupFrame, show = "*", width = 20, bd = 2, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
-		self.passentry.place(relx=0.20, rely=0.7, relwidth=0.6, relheight=0.07)
+		self.passentry.place(relx=0.25, rely=0.72, relwidth=0.5, relheight=0.05)
 		self.passentry.delete(0, 'end')
 		# Will insert email and password to database
 		self.enter = tk.Button(self.setupFrame, text = "Enter", bg=self.primaryColor, fg=self.secTextColor, font = self.labelFont, command = lambda:[self.insertPass(self.checkOTP())])
-		self.enter.place(relx=0.38, rely=0.82, relwidth=0.25, relheight=0.08)
+		self.enter.place(relx=0.35, rely=0.8, relwidth=0.3, relheight=0.07)
 
 	# Will check the entered OTP with otpStatus from checkOTP()
 	def insertPass(self, otpStatus):
@@ -112,9 +116,9 @@ class SetupFrame(tk.Frame):
 			mailLabel = tk.Label(self.setupFrame, text="Otp Sent", font=self.labelFont, bg = self.successColor, fg = self.priTextColor)
 			mailLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			mailLabel.after(6000, mailLabel.destroy())
-			print("OTP send")
+			# print("OTP send")
 		except:
 			mailErrorLabel = tk.Label(self.setupFrame, text="Error in Sending mail", font=self.labelFont, bg = self.errorColor, fg = self.priTextColor)
 			mailErrorLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			mailErrorLabel.after(6000, mailErrorLabel.destroy())
-			print("OTP NOT send")
+			# print("OTP NOT send")
