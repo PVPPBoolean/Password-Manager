@@ -48,9 +48,9 @@ class SearchPassFrame(tk.Frame):
 	def searchPass(self):
 		returnedData = self.Pobj.searchPass(self.siteText.get())
 		if returnedData != "": 
-			self.siteLabel.config(text = "Site: "+returnedData[0])
-			self.usernameLabel.config(text = "Username: "+returnedData[1])
-			self.passLabel.config(text = "Password: "+returnedData[2])
+			self.siteLabel.config(text = "Site: "+returnedData[0][0])
+			self.usernameLabel.config(text = "Username: "+returnedData[0][1])
+			self.passLabel.config(text = "Password: "+returnedData[1])
 		else:
 			invalidLabel = tk.Label(self.searchPassFrame, text = "Invalid Site Name ", bg=self.errorColor, fg=self.secTextColor, font = self.labelFont)
 			invalidLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
@@ -62,8 +62,9 @@ class SearchPassFrame(tk.Frame):
 		
 		self.Gobj.c2c(p[1])
 		self.usernameLabel.config(text = "Username")
-		self.siteText.config(text = "Site")
+		self.siteLabel.config(text = "Site")
 		self.passLabel.config(text = "Password")
+		self.siteText.delete(0, 'end')
 
 	def deletePass(self):
 		dataToDelete = ((self.siteLabel['text']).split(" "))[1]

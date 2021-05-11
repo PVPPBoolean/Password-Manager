@@ -10,6 +10,7 @@ from Frames.addPassFrame import AddPassFrame
 from Frames.homeFrame import HomeFrame
 from Database.MPdatabase import PMPDatabase
 from Database.PDatabase import siteData
+from Backend.encryption import EncryptDeCrypt
 
 
 database = PMPDatabase()
@@ -17,6 +18,9 @@ database.createTable()
 
 Pdb = siteData()
 Pdb.createDataTable()
+
+en = EncryptDeCrypt()
+en.generate_key()
 
 class PasswordManagerApp(tk.Tk):
 	def __init__(self, *args , **kwargs):
