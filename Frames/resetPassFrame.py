@@ -7,8 +7,7 @@ class ResetPassFrame(tk.Frame):
 		tk.Frame.__init__(self,parent)
 		from Frames.loginFrame import LoginFrame
 		#colors
-		self.primaryColor = '#6200ee'
-		self.secondaryColor = '#3700b3'
+		self.primaryColor = '#4479ff'
 		self.backgroundColor = '#000000'
 		self.surface1Color = '#121212'
 		self.surface2Color = '#212121'
@@ -37,7 +36,7 @@ class ResetPassFrame(tk.Frame):
 		self.cpentry.delete(0, 'end')
 		self.enter = tk.Button(self.resetPassFrame, text = "Enter", bg=self.primaryColor, fg=self.secTextColor , font = self.labelFont, command = lambda:[self.resetPass()])
 		self.enter.place(relx=0.35, rely=0.62, relwidth=0.3, relheight=0.07)
-		self.backButton = tk.Button(self.resetPassFrame, text="Back", command=lambda: controller.show_frame(LoginFrame), bg=self.surface2Color, fg=self.secTextColor)
+		self.backButton = tk.Button(self.resetPassFrame, text="Back", command=lambda: [self.npentry.delete(0, 'end'), self.cpentry.delete(0, 'end'), controller.show_frame(LoginFrame)], bg=self.surface2Color, fg=self.secTextColor)
 		self.backButton.place(relx=0.4, rely=0.72, relwidth=0.2, relheight=0.05)
 
 	# Shortcut for Enter Key

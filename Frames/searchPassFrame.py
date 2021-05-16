@@ -8,8 +8,7 @@ class SearchPassFrame(tk.Frame):
 		tk.Frame.__init__(self, parent)
 		from Frames.homeFrame import HomeFrame
 		#colors
-		self.primaryColor = '#6200ee'
-		self.secondaryColor = '#3700b3'
+		self.primaryColor = '#4479ff'
 		self.backgroundColor = '#000000'
 		self.surface1Color = '#121212'
 		self.surface2Color = '#212121'
@@ -42,7 +41,7 @@ class SearchPassFrame(tk.Frame):
 		self.copyBtn.place(relx=0.36, rely=0.6, relheight=0.05, relwidth=0.12)		
 		self.deleteBtn = tk.Button(self.searchPassFrame, text = "Delete", command=self.deletePass, bg=self.errorColor, fg=self.priTextColor) # , font = self.labelFont
 		self.deleteBtn.place(relx=0.54, rely=0.6, relwidth=0.11, relheight=0.05)
-		self.homeBtn = tk.Button(self.searchPassFrame, text = "Home", command=lambda:[controller.show_frame(HomeFrame)], bg=self.primaryColor, fg=self.secTextColor, font = self.labelFont)
+		self.homeBtn = tk.Button(self.searchPassFrame, text = "Home", command=lambda:[self.siteText.delete(0, "end"), self.siteLabel.config(text="Site"), self.usernameLabel.config(text="Username"), self.passLabel.config(text="Password"),controller.show_frame(HomeFrame)], bg=self.primaryColor, fg=self.secTextColor, font = self.labelFont)
 		self.homeBtn.place(relx=0.35, rely=0.7, relwidth=0.3, relheight=0.08)
 
 	def searchPass(self):
@@ -74,5 +73,5 @@ class SearchPassFrame(tk.Frame):
 		deleteLabel.after(2000, deleteLabel.destroy)
 		self.siteText.delete(0, "end")
 		self.siteLabel['text'] = "Website Name"
-		self.usernameLabel['text'] = "username"
+		self.usernameLabel['text'] = "Username"
 		self.passLabel['text'] = "Password"

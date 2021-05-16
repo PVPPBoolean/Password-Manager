@@ -8,8 +8,7 @@ class LoginFrame(tk.Frame):
 	def __init__(self, parent, controller):
 		tk.Frame.__init__(self,parent)
 		#colors
-		self.primaryColor = '#6200ee'
-		self.secondaryColor = '#3700b3'
+		self.primaryColor = '#4479ff'
 		self.backgroundColor = '#000000'
 		self.surface1Color = '#121212'
 		self.surface2Color = '#212121'
@@ -54,6 +53,7 @@ class LoginFrame(tk.Frame):
 			confirmLabel = tk.Label(self.loginFrame, text = "Login Successful", font = self.labelFont, bg = self.successColor, fg=self.priTextColor)
 			confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			confirmLabel.after(2000, confirmLabel.destroy)
+			self.mpassentry.delete(0, 'end')
 			from Frames.homeFrame import HomeFrame
 			self.controller.show_frame(HomeFrame)
 			return

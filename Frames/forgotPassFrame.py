@@ -11,8 +11,7 @@ class ForgotPassFrame(tk.Frame):
 		from Frames.loginFrame import LoginFrame
 		tk.Frame.__init__(self, parent)
 		#colors
-		self.primaryColor = '#6200ee'
-		self.secondaryColor = '#3700b3'
+		self.primaryColor = '#4479ff'
 		self.backgroundColor = '#000000'
 		self.surface1Color = '#121212'
 		self.surface2Color = '#212121'
@@ -52,10 +51,10 @@ class ForgotPassFrame(tk.Frame):
 		# self.otpentry.insert(0, "Enter OTP here")
 		self.otpentry.delete(0, 'end')
 		# Will call chekOTP function and check the OTP
-		self.otpEnterButton = tk.Button(self.forgotPassFrame, text="Enter",	command=lambda: [self.checkOTP()], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
+		self.otpEnterButton = tk.Button(self.forgotPassFrame, text="Enter",	command=lambda: [self.emailentry.delete(0, 'end'), self.otpentry.delete(0, 'end'), self.checkOTP()], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
 		self.otpEnterButton.place(relx=0.35, rely=0.7, relwidth=0.3, relheight=0.07)
 		# Will take back to Login Frame if user changed their mind
-		self.backButton = tk.Button(self.forgotPassFrame, text="Back", command=lambda: controller.show_frame(LoginFrame), bg=self.surface2Color, fg=self.secTextColor)
+		self.backButton = tk.Button(self.forgotPassFrame, text="Back", command=lambda: [self.emailentry.delete(0, 'end'), self.otpentry.delete(0, 'end'), controller.show_frame(LoginFrame)], bg=self.surface2Color, fg=self.secTextColor)
 		self.backButton.place(relx=0.4, rely=0.8, relwidth=0.2, relheight=0.05)
 	# Will check OTP generated
 	# OTP is generated only once in __init__()

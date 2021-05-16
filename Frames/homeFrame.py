@@ -10,8 +10,7 @@ class HomeFrame(tk.Frame):
 		from Frames.loginFrame import LoginFrame
 		tk.Frame.__init__(self, parent)
 		#colors
-		self.primaryColor = '#6200ee'
-		self.secondaryColor = '#3700b3'
+		self.primaryColor = '#4479ff'
 		self.backgroundColor = '#000000'
 		self.surface1Color = '#121212'
 		self.surface2Color = '#212121'

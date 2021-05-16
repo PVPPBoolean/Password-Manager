@@ -9,8 +9,7 @@ class AddPassFrame(tk.Frame):
 		self.entryFont = ("Rockwell", 12)
 		self.labelFont = ("Rockwell", 12, "bold") 
 
-		self.primaryColor = '#6200ee' # Button
-		self.secondaryColor = '#3700b3' # 
+		self.primaryColor = '#4479ff' # Button
 		self.backgroundColor = '#000000' # Window Bg
 		self.surface1Color = '#121212' # Box on Window
 		self.surface2Color = '#212121' # Box on Window
@@ -37,11 +36,11 @@ class AddPassFrame(tk.Frame):
 		self.passLabel.place(relx=0.25, rely=0.52, relheight=0.07, relwidth=0.5)
 		self.passText = tk.Entry(self.addPassFrame, width=25, font=self.entryFont, bg = self.surface1Color, fg = self.secTextColor)
 		self.passText.place(relx=0.25, rely=0.59, relheight=0.05, relwidth=0.5)
-		self.pwGenBtn = tk.Button(self.addPassFrame, text = "Generate Password", command=self.generatePass, bg = self.primaryColor, fg = self.secTextColor, font = self.entryFont)
+		self.pwGenBtn = tk.Button(self.addPassFrame, text = "Generate Password", command=self.generatePass, bg = self.surface2Color, fg = self.secTextColor)
 		self.pwGenBtn.place(relx=0.175, rely=0.7, relwidth=0.3, relheight=0.07)	
-		self.saveBtn = tk.Button(self.addPassFrame, text = "Save Password", command=self.savePass, bg=self.successColor, fg=self.priTextColor, font = self.entryFont)
+		self.saveBtn = tk.Button(self.addPassFrame, text = "Save Password", command=self.savePass, bg=self.surface2Color, fg=self.successColor)
 		self.saveBtn.place(relx=0.525, rely=0.7, relwidth=0.3, relheight=0.07)
-		self.homeBtn = tk.Button(self.addPassFrame, text = "Home", command=lambda:[controller.show_frame(HomeFrame)], font = self.labelFont, bg = self.primaryColor, fg = self.secTextColor)
+		self.homeBtn = tk.Button(self.addPassFrame, text = "Home", command=lambda:[self.siteText.delete(0, 'end'),self.usernameText.delete(0, 'end'), self.passText.delete(0, 'end'), controller.show_frame(HomeFrame)], font = self.labelFont, bg = self.primaryColor, fg = self.secTextColor)
 		self.homeBtn.place(relx=0.35, rely=0.8, relwidth=0.3, relheight=0.07)
 
 	def generatePass(self):
@@ -56,4 +55,7 @@ class AddPassFrame(tk.Frame):
 		self.siteText.delete(0, 'end')
 		self.usernameText.delete(0, 'end')
 		self.passText.delete(0, 'end')
+		saveLabel = tk.Label(self.addPassFrame, text = "Password saved successfully", bg=self.successColor, fg=self.secTextColor, font = self.labelFont)
+		saveLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
+		saveLabel.after(2000, saveLabel.destroy)
 		# print(self.siteText.get(), " : ", self.usernameText.get(), " : ", self.passText.get())
