@@ -51,7 +51,7 @@ class ForgotPassFrame(tk.Frame):
 		# self.otpentry.insert(0, "Enter OTP here")
 		self.otpentry.delete(0, 'end')
 		# Will call chekOTP function and check the OTP
-		self.otpEnterButton = tk.Button(self.forgotPassFrame, text="Enter",	command=lambda: [self.emailentry.delete(0, 'end'), self.otpentry.delete(0, 'end'), self.checkOTP()], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
+		self.otpEnterButton = tk.Button(self.forgotPassFrame, text="Enter",	command=lambda: [ self.checkOTP(), self.emailentry.delete(0, 'end'), self.otpentry.delete(0, 'end')], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
 		self.otpEnterButton.place(relx=0.35, rely=0.7, relwidth=0.3, relheight=0.07)
 		# Will take back to Login Frame if user changed their mind
 		self.backButton = tk.Button(self.forgotPassFrame, text="Back", command=lambda: [self.emailentry.delete(0, 'end'), self.otpentry.delete(0, 'end'), controller.show_frame(LoginFrame)], bg=self.surface2Color, fg=self.secTextColor)
