@@ -1,6 +1,5 @@
 from passwordManagerApp import PasswordManagerApp
 
-
 def main():
 	app = PasswordManagerApp()
 	app.mainloop()
