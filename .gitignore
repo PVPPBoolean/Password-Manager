@@ -2,6 +2,5 @@ __pycache__/
 Frames/__pycache__/
 Database/__pycache__/
 Backend/__pycache__/
-config.py
 pwmdatabase.db
 secret.key
